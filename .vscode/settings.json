@@ -1,0 +1,10 @@
+{
+    "editor.wordWrap": "on",
+    "go.docsTool": "gogetdoc",
+    "go.testFlags": ["-v","-count=1"],
+    "go.buildTags": "",
+    "go.buildFlags": [],
+    "go.lintFlags": [],
+    "go.vetFlags": [],
+    "go.coverOnSave": false,
+}
