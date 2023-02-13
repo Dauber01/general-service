@@ -2,8 +2,10 @@ package web
 
 import (
 	"fmt"
+	"general-service/library/resource"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -26,6 +28,13 @@ func LoginEndpoint(ctx *gin.Context) {
 		//如果下面不加return的话,函数仍然会继续执行
 		return
 	}
+
+	redisErr := resource.RedisClient.Set(ctx, loginInfo.UserName, loginInfo.PassWord,
+		time.Duration(60)*time.Second).Err()
+	if redisErr != nil {
+		log.Fatalf("redis操作失败%s", redisErr.Error())
+	}
+
 	log.Printf("username:%s, password:%s", loginInfo.UserName, loginInfo.PassWord)
 
 	ctx.String(200, fmt.Sprintf("user:%s, welcome", loginInfo.UserName))

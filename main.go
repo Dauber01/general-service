@@ -10,6 +10,8 @@ import (
 	"os/signal"
 	"time"
 
+	"general-service/bootstrap"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,6 +23,10 @@ func main() {
 
 	// 设置路由信息
 	httpserver.ReqHandler(router)
+
+	// 初始化各个中间件模版
+	ctx := context.Background()
+	bootstrap.ResourceInit(ctx)
 
 	go func() {
 		if err := s.ListenAndServe(); err != nil && err != http.ErrServerClosed {
