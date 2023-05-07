@@ -6,3 +6,9 @@ go mode
 2.go get 添加依赖
 杂记
 1.os.GetWd()获取文件夹路径的方案
+
+go 文件打包的指令
+CGO_ENABLED=0  GOOS=linux  GOARCH=amd64  go build -o general-service main.go
+
+docker 打包的指令
+docker build -t general:v0.1 .  

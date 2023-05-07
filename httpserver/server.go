@@ -1,6 +1,7 @@
 package httpserver
 
 import (
+	"general-service/library/resource"
 	"net/http"
 	"time"
 
@@ -10,10 +11,10 @@ import (
 // 初始化 server
 func InitServer(router *gin.Engine) *http.Server {
 	return &http.Server{
-		Addr:           ":8080",
+		Addr:           resource.Conf.Server.Addr,
 		Handler:        router,
-		ReadTimeout:    10 * time.Second,
-		WriteTimeout:   10 * time.Second,
+		ReadTimeout:    time.Duration(resource.Conf.Server.ReadTimeout) * time.Second,
+		WriteTimeout:   time.Duration(resource.Conf.Server.WriteTimeout) * time.Second,
 		MaxHeaderBytes: 1 << 20,
 	}
 }

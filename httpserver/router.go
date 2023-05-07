@@ -10,6 +10,6 @@ func ReqHandler(router *gin.Engine) {
 	// 简单的路由组: v1
 	v1 := router.Group("/v1")
 	{
-		v1.POST("/login", web.LoginEndpoint)
+		v1.GET("/hello", web.HelloEndpoint)
 	}
 }
